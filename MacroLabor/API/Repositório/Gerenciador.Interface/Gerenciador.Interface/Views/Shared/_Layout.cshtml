@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Gerênciador de Arquivos</title>
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap-notify")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Styles.Render("~/Content/css")
+
+
+
+
+
+
+</head>
+<body>
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Gerênciador de Arquivos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Arquivos", "Index", "Arquivo")</li>
+                    <li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
+                    <li>@Html.ActionLink("Repositórios", "Index", "Repositorio")</li>
+                    <li>@Html.ActionLink("Sistemas", "Index", "Sistema")</li>
+                    <li>@Html.ActionLink("Transferências", "Index", "Transferencia")</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+
+        <div style="position:relative; text-align:center">
+
+            <img id="loading" style="display:none" src="~/Content/images/loading.gif" />
+
+        </div>
+
+
+        <hr />
+        <footer>
+            <p>  Copyright ©  @DateTime.Now.Year • Bancodoc • Todos os direitos reservados</p>
+        </footer>
+    </div>
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>

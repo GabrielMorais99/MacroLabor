@@ -1,0 +1,199 @@
+﻿@model IEnumerable<Gerenciador.Entidades.Transferencia>
+
+@{
+    ViewBag.Title = "Transferências";
+}
+
+ 
+
+<h2>Transferências</h2>
+
+<script>
+
+    function pesquisar(input) {
+        var val = jQuery(input).val().toUpperCase();
+        if (val == "") {
+            $('#table > tbody  > tr').each(function () {
+                $(this).show();
+            });
+        } else {
+            $('#table > tbody  > tr').hide();
+            $('#table > tbody  > tr')
+                .find('td')
+                .filter(function () {
+                    return ($(this).text().toUpperCase().indexOf(val) >= 0);
+                }).closest("tr").show();
+        }
+    };
+    $(document).ready(function () {
+
+        $('#MesAno').change(function () {
+
+
+               $.ajax({
+                type: "GET",
+                url: 'Transferencia/RetornarTransferencias?parametro=' + $(this).val(),
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(),
+                dataType: "json",
+                statusCode: {
+
+                    200: function (retorno) {
+
+                        
+                        $("#table tbody tr").remove(); 
+
+                        $.each(retorno.transferencias, function (data, data) {
+
+
+                            var tr = ' <tr> <td style="text-align:center">' + new Date(+data.DataInicioProcessamento.replace(/\D/g, '')).toLocaleDateString()+ ' '  +  new Date(+data.DataInicioProcessamento.replace(/\D/g, '')).toLocaleTimeString() + '</td>';
+
+
+                            if (data.DataTerminoProcessamento == null)
+                                tr = tr + ' <td style="text-align:center">-</td>';
+                            else
+                                tr = tr + ' <td style="text-align:center">' + new Date(+data.DataTerminoProcessamento.replace(/\D/g, '')).toLocaleDateString() + ' ' + new Date(+data.DataTerminoProcessamento.replace(/\D/g, '')).toLocaleTimeString() + '</td>';
+
+                            tr = tr + ' <td style="text-align:center">' + data.Cliente + '</td>';
+
+                            tr = tr + ' <td style="text-align:center">' + data.Sistema + '</td>';
+
+                            tr = tr + ' <td style="text-align:center">' + data.RepositorioOrigem + '</td>';
+
+                            if (data.RepositorioDestino=='')
+                                tr = tr + ' <td style="text-align:center">-</td>';
+                            else
+                                tr = tr + ' <td style="text-align:center">' + data.RepositorioDestino + '</td>';
+
+                            if (data.TransferenciaOK)
+                                tr = tr + ' <td style="text-align:center"><img src="../Images/HandUp.png" /></td>';    
+                            else
+                                tr = tr + ' <td style="text-align:center"><img src="../Images/HandDown.png" title="'+data.Error+'" /></td>';    
+
+                            tr = tr + '</tr>'; 
+
+                            $("#table tbody").append(tr);
+
+
+                        });
+
+
+
+                    },
+                },
+            });
+           
+
+ 
+
+
+        });
+    });
+
+    </script>
+
+<br />
+<br />
+
+
+ 
+    <div  style="text-align:left">
+        Mês/Ano: <br />
+        @Html.DropDownList("MesAno", new SelectList(ViewBag.MesAno, "Key", "Value"), null, new { @class = "MesAno", style = "width: 100px; height: 30px;" })
+
+    </div>
+
+
+
+    <table class="table" id="table">
+
+        <thead>
+
+            <tr>
+                
+                <th style="text-align:center">
+                    @Html.DisplayNameFor(model => model.DataInicioProcessamento)
+                </th>
+                <th style="text-align:center">
+                    @Html.DisplayNameFor(model => model.DataTerminoProcessamento)
+                </th>
+                <th style="text-align:center">
+                    @Html.DisplayNameFor(model => model.Cliente)
+                </th>
+                <th style="text-align:center">
+                    @Html.DisplayNameFor(model => model.Sistema)
+                </th>
+
+                <th style="text-align:center">
+                    @Html.DisplayNameFor(model => model.RepositorioOrigem)
+                </th>
+                <th style="text-align:center">
+                    
+                    @Html.DisplayNameFor(model => model.RepositorioDestino)
+                </th>
+
+
+                <th style="text-align:center">
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+            
+
+            </tr>
+
+            
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.DataInicioProcessamento)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.DataTerminoProcessamento)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.Cliente)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.Sistema)
+                    </td>
+                    <td style="text-align:center">
+                        @Html.DisplayFor(modelItem => item.RepositorioOrigem)
+                    </td>
+                    <td style="text-align:center">
+
+                        @if (item.RepositorioDestino == string.Empty)
+                        {
+
+                            <text>-</text>
+                        }
+                        else
+                        {
+
+                            @Html.DisplayFor(modelItem => item.RepositorioDestino);
+                        } 
+
+                    </td>
+
+
+                    <td style="text-align:center">
+
+                        @if ((bool)item.TransferenciaOK)
+                        {
+                                <img src="../Images/HandUp.png" />
+                        }
+                        else
+                         {
+                            <img src="../Images/HandDown.png" title="@item.Error" />
+                        }
+                    </td>
+                    
+
+                </tr>
+            }
+        </tbody>
+
+    </table>

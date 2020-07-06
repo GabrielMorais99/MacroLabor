@@ -1,0 +1,433 @@
+﻿@model IEnumerable<Gerenciador.Entidades.Sistema>
+
+@{
+    ViewBag.Title = "Sistemas";
+}
+
+
+<head>
+
+    <style rel="stylesheet" type="text/css" scoped="scoped">
+
+        #Cliente {
+            width: 240px;
+            max-width: 240px;
+            height: 27px;
+            border-color: #808080;
+            color: #000000
+        }
+    </style>
+
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+
+    <script src="@Url.Content("~/Scripts/knockout-3.4.2.debug.js")" type="text/javascript"></script>
+
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+</head>
+
+<h2>Sistemas</h2>
+<p>
+    <div style="padding-left:88%">   <input type="button" value="Novo" class="button" data-bind="click: $root.create" /></div>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th style="text-align:center;width:80%">
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+
+            <th style="text-align:center">Ações</th>
+        </tr>
+
+    </thead>
+    <tbody data-bind="foreach: Sistemas">
+
+        <tr data-bind="visible: Ativo">
+            <td style="text-align:center" data-bind="text: Nome"></td>
+
+            <td style="text-align:center">
+
+                <a href="#" class="link" data-bind="click: $root.Edit"> Editar </a> |
+
+                <a href="#" class="link" data-bind="click: $root.Delete"> Excluir </a>  
+
+            </td>
+
+        </tr>
+    </tbody>
+
+</table>
+
+
+<div id="dialog" class="ui-dialog-content ui-widget-content" style="display:none; overflow-x:hidden; overflow-y:auto; background-color:white">
+   
+    
+        <div class="row">
+        <div class="col-lg-4">
+
+            <h2>Novo</h2>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-4">
+                <label for="name">Nome</label><br />
+                <input data-bind="value: $root.Nome" type="text" style="width:250px" title="Nome" />
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+
+            <div class="col-lg-4">
+                <label for="name">Cliente</label><br />
+                <select id="Cliente" data-bind="options: Clientes,event:{ change:$root.selectCliente }, optionsText: 'Nome', optionsValue: 'IdCliente', value: $root.IdCliente,  optionsCaption: 'Selecione um Cliente..'"></select>
+
+            </div>
+            <div class="col-lg-4">
+                <label for="name">Alias</label><br />
+                <input type="text" style="width:250px" title="Alias" data-bind="value: $root.Alias" />
+            </div>
+
+            <div  class="col-lg-1" style="padding-top:15px; margin-left:-70px"><button class="button" style="width:90px" data-bind="click: $root.Add">Adicionar</button></div>
+            <br />
+        </div>
+
+        <div class="row">
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+
+                        <th style="text-align:center;width:40%">
+                            Cliente
+                        </th>
+
+                        <th style="text-align:center;width:40%">
+                            Alias
+                        </th>
+
+                        <th style="text-align:center">Ações</th>
+                    </tr>
+
+                </thead>
+                <tbody data-bind="foreach: $root.Sistema().SistemasClientes">
+                    <tr data-bind="visible: Ativo">
+
+                        <td style="text-align:center" data-bind="text: Cliente"></td>
+
+                        <td style="text-align:center" data-bind="text: Nome"></td>
+                        <td style="text-align:center">
+                            
+                            <a href="#" class="link" data-bind="click: $root.Delete_Cliente"> Excluir </a>
+                        </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+         
+        <hr />
+        <div style="text-align:right">
+
+            <button class="button" style="width:90px" data-bind="click: $root.save">Salvar</button>
+
+            <button class="btn btn-default" data-bind="click: $root.cancel">Cancelar</button>
+
+        </div>
+    </div>
+
+ 
+
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+
+        function SistemaViewModel() {
+
+            var self = this;
+
+            self.IdSistema = ko.observable("");
+
+            self.Nome = ko.observable("");
+
+            self.IdCliente = ko.observable("");
+
+            self.Cliente = ko.observable("");
+
+            self.Ativo = ko.observable("");
+
+            self.Alias = ko.observable("");
+
+            self.IdSistemaCliente = ko.observable("");
+
+            self.AtivoClienteSistema = ko.observable("");
+
+            self.Sistema = ko.observable("");
+
+            self.Sistemas = ko.observableArray();
+
+            self.SistemasClientes = ko.observableArray();
+
+            //Ultilizado no dropdownlist
+            self.Clientes = ko.observableArray();
+
+            //Evento para obter o texto do dropdownlist
+            self.selectCliente = function (obj, event) {
+
+                self.Cliente('');
+
+                if (event.originalEvent && parseInt(event.originalEvent.srcElement.selectedIndex) > 0) {
+
+                    self.Cliente(self.Clientes()[event.originalEvent.srcElement.selectedIndex - 1].Nome);
+                }
+            };
+
+
+            //Encapsulando os campos observáveis ultilizados no CRUD.
+            var Sistema = {
+
+                IdSistema: self.IdSistema,
+
+                Nome: self.Nome,
+
+                Ativo: self.Ativo,
+
+                SistemasClientes: self.SistemasClientes
+            };
+
+
+            var SistemaCliente = {
+
+                Ativo: self.AtivoClienteSistema,
+
+                Cliente: self.Cliente,
+
+                IdSistema: self.IdSistema,
+
+                IdSistemaCliente: self.IdSistemaCliente,
+
+                Nome: self.Alias
+
+
+            };
+
+
+            // Inicializando o array de sistemas.
+            $.ajax({
+                url: '@Url.Action("Retornar_Sistemas", "Sistema")',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                data: {},
+                success: function (data) {
+
+                    self.Sistemas(data);
+
+                }
+            });
+
+            $.ajax({
+                url: '@Url.Action("Retornar_Clientes", "Sistema")',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                data: {},
+                success: function (retorno) {
+
+                    self.Clientes(retorno);
+
+                }
+            });
+
+
+
+            //Abre o dialog para o usuário cadastrar um novo sistema.
+            self.create = function () {
+
+                $('#dialog').dialog({ width: 1000, height: 550 });
+
+                self.IdSistema(''), self.Nome(''); self.IdCliente(undefined); self.Cliente(''); self.Alias(''); self.SistemasClientes.removeAll();
+
+                self.Sistema(Sistema);
+            }
+
+            self.Edit = function (entidade) {
+
+                $('#dialog').dialog({ width: 1000, height: 550 });
+
+                self.IdCliente(undefined); self.Cliente(''); self.Alias('');
+
+                //Setando os observadores com os valores obtidos..
+                self.Nome(entidade.Nome);
+
+                self.Ativo(entidade.Ativo);
+
+                self.SistemasClientes(entidade.SistemasClientes);
+
+                self.IdSistema(entidade.IdSistema);
+
+                //Iniciando o observador Sistema com os valores já setados.
+                self.Sistema(Sistema);
+            };
+
+            self.cancel = function () {
+
+                $('#dialog').dialog('close');
+            }
+
+
+
+            self.save = function () {
+
+                if (self.Nome() != "") {
+
+                    $.ajax({
+                        url: '@Url.Action("Salvar", "Sistema")',
+
+                        cache: false,
+
+                        type: 'POST',
+
+                        contentType: 'application/json; charset=utf-8',
+
+                        data: ko.toJSON(self.Sistema),
+
+                        success: function (data) {
+
+                            if (data.erro) {
+
+                                $.notify({ message: data.msg }, { type: 'danger' });
+                            }
+                            else {
+
+
+                                if (self.IdSistema() == '') {
+
+                                    self.Sistemas.push(data.Sistema);
+
+                                } else {
+
+                                    var itemSelected = ko.utils.arrayFirst(self.Sistemas(), function (item) { return item.IdSistema == self.Sistema().IdSistema();});
+                                    //Removendo o elemento antigo.
+                                    self.Sistemas.remove(itemSelected);
+
+                                    //Incluindo o elemento atualizado.
+                                    self.Sistemas.push(data.Sistema);
+
+                                }
+
+
+                                $('#dialog').dialog('close');
+
+                                $.notify({ message: 'Sistema salvo com sucesso!' }, { type: 'success' });
+                            }
+                        }
+                    }).fail(function (xhr, textStatus, err) {
+                        $.notify({ message: err }, { type: 'danger' });
+                    });
+
+
+
+                } else { $.notify({ message: 'Informe os valores corretamente!' }, { type: 'warning' }); }
+            }
+
+
+            // Exclui um sistema da base de dados.
+            self.Delete = function (entidade) {
+
+                if (confirm('Deseja realmente excluir o sistema selecionado?')) {
+
+                    $.get('/Sistema/Excluir?id=' + entidade.IdSistema, function (data) {
+
+                    }).fail(function (xhr, textStatus, err) {
+
+                        $.notify({ message: err }, { type: 'danger' });
+
+                    }).done(function (data) {
+
+
+                        if (data.erro) {
+                            $.notify({ message: data.msg }, { type: 'danger' });
+                        }
+                        else {
+
+
+                            self.Sistemas.remove(entidade);
+
+                            $.notify({ message: 'Sistema excluído com sucesso!' }, { type: 'success' });
+
+                        }
+                    });
+                }
+
+
+            };
+
+            ////////////////////////////////////////////////////////FIM DO CRUD SISTEMA/////////////////////////////////////////////////////////////
+
+
+            //Incluindo um cliente ao sistema.
+            self.Add = function () {
+
+                if (self.IdCliente() == undefined || self.Alias() == '') {
+
+                    $.notify({ message: 'Informe os valores corretamente!' }, { type: 'warning' });
+
+                }
+                else {
+                    self.Sistema().SistemasClientes.push({
+
+                        Ativo: true, Cliente: self.Cliente(),
+
+                        IdCliente: self.IdCliente(),
+
+                        IdSistema: self.Sistema().IdSistema(),
+
+                        IdSistemaCliente: self.IdSistemaCliente(),
+
+                        Nome: self.Alias(),
+
+                        Sistema: self.Sistema().Nome()
+
+                    });
+
+                    self.IdCliente(undefined); self.Cliente(''); self.Alias('');
+                }
+            }
+
+            self.Delete_Cliente = function (entidade) {
+
+                if (confirm('Deseja realmente excluir o cliente selecionado?')) {
+                     
+                    var itemSelected = ko.utils.arrayFirst(self.SistemasClientes(), function (item) { return item.IdSistemaCliente == entidade.IdSistemaCliente; });
+
+                    self.SistemasClientes.remove(itemSelected);
+
+                    entidade.Ativo = false;
+
+                    self.SistemasClientes.push(entidade);
+                }
+            }
+    }
+    var viewModel = new SistemaViewModel();
+
+    ko.applyBindings(viewModel);
+});
+
+</script>

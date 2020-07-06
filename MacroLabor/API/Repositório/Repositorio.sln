@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio.Interface", "Gerenciador_Repositorio\Repositorio.Interface.csproj", "{9C79B286-E236-44AD-8B44-C032C00B0175}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gerenciador.Dal", "Gerenciador_Repositorio\ClassLibrary1\Gerenciador.Dal.csproj", "{11E33DDF-65CD-4BD7-B007-B922B0C3A1B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio.Dal", "Repositorio.Dal\Repositorio.Dal.csproj", "{685CF511-9A22-4630-BEFE-8E2B56C5C0D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C79B286-E236-44AD-8B44-C032C00B0175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C79B286-E236-44AD-8B44-C032C00B0175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C79B286-E236-44AD-8B44-C032C00B0175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C79B286-E236-44AD-8B44-C032C00B0175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11E33DDF-65CD-4BD7-B007-B922B0C3A1B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11E33DDF-65CD-4BD7-B007-B922B0C3A1B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11E33DDF-65CD-4BD7-B007-B922B0C3A1B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11E33DDF-65CD-4BD7-B007-B922B0C3A1B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{685CF511-9A22-4630-BEFE-8E2B56C5C0D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{685CF511-9A22-4630-BEFE-8E2B56C5C0D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{685CF511-9A22-4630-BEFE-8E2B56C5C0D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{685CF511-9A22-4630-BEFE-8E2B56C5C0D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2193537-7396-454E-BA76-C6FDB199FAE7}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://inforweb.no-ip.info:8080/tfs/projetos
+		SccProjectUniqueName0 = Gerenciador_Repositorio\\ClassLibrary1\\Gerenciador.DAL.csproj
+		SccProjectName0 = Gerenciador_Repositorio/ClassLibrary1
+		SccLocalPath0 = Gerenciador_Repositorio\\ClassLibrary1
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = Repositorio.Dal\\Repositorio.Dal.csproj
+		SccProjectName2 = Repositorio.Dal
+		SccLocalPath2 = Repositorio.Dal
+		SccProjectUniqueName3 = Gerenciador_Repositorio\\Repositorio.Interface.csproj
+		SccProjectName3 = Gerenciador_Repositorio
+		SccLocalPath3 = Gerenciador_Repositorio
+	EndGlobalSection
+EndGlobal

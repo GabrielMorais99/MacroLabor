@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Repositorio.Dal.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Arquivo">
+          <Key>
+            <PropertyRef Name="IdArquivo" />
+          </Key>
+          <Property Name="IdArquivo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdRepositorio" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Metadado" Type="varchar(max)" />
+          <Property Name="TamanhoBytes" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Arquivo" Type="varbinary(max)" />
+          <Property Name="Registro" Type="datetime" Nullable="false" />
+          <Property Name="Alteracao" Type="datetime" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ArquivoTemporario">
+          <Key>
+            <PropertyRef Name="IdArquivo" />
+          </Key>
+          <Property Name="IdArquivo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DataInc" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Repositorio">
+          <Key>
+            <PropertyRef Name="IdRepositorio" />
+          </Key>
+          <Property Name="IdRepositorio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSistema" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="250" />
+          <Property Name="ChavePrivada" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Registro" Type="datetime" Nullable="false" />
+          <Property Name="Alteracao" Type="datetime" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sistema">
+          <Key>
+            <PropertyRef Name="IdSistema" />
+          </Key>
+          <Property Name="IdSistema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome_do_Sistema" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descricao_do_Sistema" Type="varchar" MaxLength="250" />
+          <Property Name="ChavePrivada" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Registro" Type="datetime" Nullable="false" />
+          <Property Name="Alteracao" Type="datetime" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Repositorio_Tem_Arquivo">
+          <End Role="Repositorio" Type="Self.Repositorio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Arquivo" Type="Self.Arquivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Repositorio">
+              <PropertyRef Name="IdRepositorio" />
+            </Principal>
+            <Dependent Role="Arquivo">
+              <PropertyRef Name="IdRepositorio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repositorios_De_Sistema">
+          <End Role="Sistema" Type="Self.Sistema" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Repositorio" Type="Self.Repositorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sistema">
+              <PropertyRef Name="IdSistema" />
+            </Principal>
+            <Dependent Role="Repositorio">
+              <PropertyRef Name="IdSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RepositorioDalStoreContainer">
+          <EntitySet Name="Arquivo" EntityType="Self.Arquivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArquivoTemporario" EntityType="Self.ArquivoTemporario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repositorio" EntityType="Self.Repositorio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sistema" EntityType="Self.Sistema" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Repositorio_Tem_Arquivo" Association="Self.FK_Repositorio_Tem_Arquivo">
+            <End Role="Repositorio" EntitySet="Repositorio" />
+            <End Role="Arquivo" EntitySet="Arquivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repositorios_De_Sistema" Association="Self.FK_Repositorios_De_Sistema">
+            <End Role="Sistema" EntitySet="Sistema" />
+            <End Role="Repositorio" EntitySet="Repositorio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Repositorio.Dal" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Arquivo">
+          <Key>
+            <PropertyRef Name="IdArquivo" />
+          </Key>
+          <Property Name="IdArquivo" Type="Guid" Nullable="false" />
+          <Property Name="IdRepositorio" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Metadado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TamanhoBytes" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Arquivo1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Alteracao" Type="DateTime" Precision="3" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Repositorio" Relationship="Self.FK_Repositorio_Tem_Arquivo" FromRole="Arquivo" ToRole="Repositorio" />
+        </EntityType>
+        <EntityType Name="ArquivoTemporario">
+          <Key>
+            <PropertyRef Name="IdArquivo" />
+          </Key>
+          <Property Name="IdArquivo" Type="Guid" Nullable="false" />
+          <Property Name="DataInc" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Repositorio">
+          <Key>
+            <PropertyRef Name="IdRepositorio" />
+          </Key>
+          <Property Name="IdRepositorio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSistema" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descricao" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ChavePrivada" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Alteracao" Type="DateTime" Precision="3" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Arquivo" Relationship="Self.FK_Repositorio_Tem_Arquivo" FromRole="Repositorio" ToRole="Arquivo" />
+          <NavigationProperty Name="Sistema" Relationship="Self.FK_Repositorios_De_Sistema" FromRole="Repositorio" ToRole="Sistema" />
+        </EntityType>
+        <EntityType Name="Sistema">
+          <Key>
+            <PropertyRef Name="IdSistema" />
+          </Key>
+          <Property Name="IdSistema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome_do_Sistema" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descricao_do_Sistema" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ChavePrivada" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Alteracao" Type="DateTime" Precision="3" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Repositorio" Relationship="Self.FK_Repositorios_De_Sistema" FromRole="Sistema" ToRole="Repositorio" />
+        </EntityType>
+        <Association Name="FK_Repositorio_Tem_Arquivo">
+          <End Role="Repositorio" Type="Self.Repositorio" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Arquivo" Type="Self.Arquivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Repositorio">
+              <PropertyRef Name="IdRepositorio" />
+            </Principal>
+            <Dependent Role="Arquivo">
+              <PropertyRef Name="IdRepositorio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repositorios_De_Sistema">
+          <End Role="Sistema" Type="Self.Sistema" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Repositorio" Type="Self.Repositorio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sistema">
+              <PropertyRef Name="IdSistema" />
+            </Principal>
+            <Dependent Role="Repositorio">
+              <PropertyRef Name="IdSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RepositorioContexto" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arquivo" EntityType="Self.Arquivo" />
+          <EntitySet Name="ArquivoTemporario" EntityType="Self.ArquivoTemporario" />
+          <EntitySet Name="Repositorio" EntityType="Self.Repositorio" />
+          <EntitySet Name="Sistema" EntityType="Self.Sistema" />
+          <AssociationSet Name="FK_Repositorio_Tem_Arquivo" Association="Self.FK_Repositorio_Tem_Arquivo">
+            <End Role="Repositorio" EntitySet="Repositorio" />
+            <End Role="Arquivo" EntitySet="Arquivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repositorios_De_Sistema" Association="Self.FK_Repositorios_De_Sistema">
+            <End Role="Sistema" EntitySet="Sistema" />
+            <End Role="Repositorio" EntitySet="Repositorio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RepositorioDalStoreContainer" CdmEntityContainer="RepositorioContexto">
+          <EntitySetMapping Name="Arquivo">
+            <EntityTypeMapping TypeName="Repositorio.Dal.Arquivo">
+              <MappingFragment StoreEntitySet="Arquivo">
+                <ScalarProperty Name="IdArquivo" ColumnName="IdArquivo" />
+                <ScalarProperty Name="IdRepositorio" ColumnName="IdRepositorio" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Metadado" ColumnName="Metadado" />
+                <ScalarProperty Name="TamanhoBytes" ColumnName="TamanhoBytes" />
+                <ScalarProperty Name="Arquivo1" ColumnName="Arquivo" />
+                <ScalarProperty Name="Registro" ColumnName="Registro" />
+                <ScalarProperty Name="Alteracao" ColumnName="Alteracao" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArquivoTemporario">
+            <EntityTypeMapping TypeName="Repositorio.Dal.ArquivoTemporario">
+              <MappingFragment StoreEntitySet="ArquivoTemporario">
+                <ScalarProperty Name="IdArquivo" ColumnName="IdArquivo" />
+                <ScalarProperty Name="DataInc" ColumnName="DataInc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repositorio">
+            <EntityTypeMapping TypeName="Repositorio.Dal.Repositorio">
+              <MappingFragment StoreEntitySet="Repositorio">
+                <ScalarProperty Name="IdRepositorio" ColumnName="IdRepositorio" />
+                <ScalarProperty Name="IdSistema" ColumnName="IdSistema" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="ChavePrivada" ColumnName="ChavePrivada" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Registro" ColumnName="Registro" />
+                <ScalarProperty Name="Alteracao" ColumnName="Alteracao" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sistema">
+            <EntityTypeMapping TypeName="Repositorio.Dal.Sistema">
+              <MappingFragment StoreEntitySet="Sistema">
+                <ScalarProperty Name="IdSistema" ColumnName="IdSistema" />
+                <ScalarProperty Name="Nome_do_Sistema" ColumnName="Nome_do_Sistema" />
+                <ScalarProperty Name="Descricao_do_Sistema" ColumnName="Descricao_do_Sistema" />
+                <ScalarProperty Name="ChavePrivada" ColumnName="ChavePrivada" />
+                <ScalarProperty Name="Registro" ColumnName="Registro" />
+                <ScalarProperty Name="Alteracao" ColumnName="Alteracao" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
