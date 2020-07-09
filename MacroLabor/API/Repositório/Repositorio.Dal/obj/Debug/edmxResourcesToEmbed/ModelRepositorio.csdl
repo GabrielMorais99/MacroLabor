@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Repositorio.Dal" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Arquivo">
+    <Key>
+      <PropertyRef Name="IdArquivo" />
+    </Key>
+    <Property Name="IdArquivo" Type="Guid" Nullable="false" />
+    <Property Name="IdRepositorio" Type="Int32" Nullable="false" />
+    <Property Name="Tipo" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Metadado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TamanhoBytes" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Arquivo1" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Registro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Alteracao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Repositorio" Relationship="Self.FK_Repositorio_Tem_Arquivo" FromRole="Arquivo" ToRole="Repositorio" />
+  </EntityType>
+  <EntityType Name="ArquivoTemporario">
+    <Key>
+      <PropertyRef Name="IdArquivo" />
+    </Key>
+    <Property Name="IdArquivo" Type="Guid" Nullable="false" />
+    <Property Name="DataInc" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Repositorio">
+    <Key>
+      <PropertyRef Name="IdRepositorio" />
+    </Key>
+    <Property Name="IdRepositorio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdSistema" Type="Int32" Nullable="false" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descricao" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ChavePrivada" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Registro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Alteracao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Arquivo" Relationship="Self.FK_Repositorio_Tem_Arquivo" FromRole="Repositorio" ToRole="Arquivo" />
+    <NavigationProperty Name="Sistema" Relationship="Self.FK_Repositorios_De_Sistema" FromRole="Repositorio" ToRole="Sistema" />
+  </EntityType>
+  <EntityType Name="Sistema">
+    <Key>
+      <PropertyRef Name="IdSistema" />
+    </Key>
+    <Property Name="IdSistema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome_do_Sistema" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descricao_do_Sistema" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ChavePrivada" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Registro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Alteracao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Repositorio" Relationship="Self.FK_Repositorios_De_Sistema" FromRole="Sistema" ToRole="Repositorio" />
+  </EntityType>
+  <Association Name="FK_Repositorio_Tem_Arquivo">
+    <End Role="Repositorio" Type="Self.Repositorio" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Arquivo" Type="Self.Arquivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Repositorio">
+        <PropertyRef Name="IdRepositorio" />
+      </Principal>
+      <Dependent Role="Arquivo">
+        <PropertyRef Name="IdRepositorio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Repositorios_De_Sistema">
+    <End Role="Sistema" Type="Self.Sistema" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Repositorio" Type="Self.Repositorio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sistema">
+        <PropertyRef Name="IdSistema" />
+      </Principal>
+      <Dependent Role="Repositorio">
+        <PropertyRef Name="IdSistema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RepositorioContexto" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Arquivo" EntityType="Self.Arquivo" />
+    <EntitySet Name="ArquivoTemporario" EntityType="Self.ArquivoTemporario" />
+    <EntitySet Name="Repositorio" EntityType="Self.Repositorio" />
+    <EntitySet Name="Sistema" EntityType="Self.Sistema" />
+    <AssociationSet Name="FK_Repositorio_Tem_Arquivo" Association="Self.FK_Repositorio_Tem_Arquivo">
+      <End Role="Repositorio" EntitySet="Repositorio" />
+      <End Role="Arquivo" EntitySet="Arquivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Repositorios_De_Sistema" Association="Self.FK_Repositorios_De_Sistema">
+      <End Role="Sistema" EntitySet="Sistema" />
+      <End Role="Repositorio" EntitySet="Repositorio" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

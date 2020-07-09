@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"path": "API/obj/Release/netcoreapp2.1/PubTmp/Out/",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build - API/obj/Release/netcoreapp2.1/PubTmp/Out",
+			"detail": "ng build"
+		}
+	]
+}

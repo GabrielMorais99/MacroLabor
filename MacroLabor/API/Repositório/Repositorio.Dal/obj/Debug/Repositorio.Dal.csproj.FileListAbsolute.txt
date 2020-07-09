@@ -1,0 +1,12 @@
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\bin\Debug\Repositorio.Dal.dll.config
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\bin\Debug\Repositorio.Dal.dll
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\bin\Debug\Repositorio.Dal.pdb
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\bin\Debug\EntityFramework.dll
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\bin\Debug\EntityFramework.xml
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\obj\Debug\Repositorio.Dal.csprojAssemblyReference.cache
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\obj\Debug\Repositorio.Dal.csproj.CoreCompileInputs.cache
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\obj\Debug\Repositorio.Dal.csproj.CopyComplete
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\obj\Debug\Repositorio.Dal.dll
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Repositorio.Dal\obj\Debug\Repositorio.Dal.pdb

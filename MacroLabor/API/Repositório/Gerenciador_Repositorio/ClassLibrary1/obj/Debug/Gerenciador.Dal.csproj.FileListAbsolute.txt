@@ -1,0 +1,15 @@
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\bin\Debug\GerenciadorDAL.dll.config
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\bin\Debug\GerenciadorDAL.dll
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\bin\Debug\GerenciadorDAL.pdb
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\bin\Debug\EntityFramework.dll
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\bin\Debug\Repositorio.Dal.dll
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\bin\Debug\Repositorio.Dal.pdb
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\bin\Debug\Repositorio.Dal.dll.config
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\bin\Debug\EntityFramework.xml
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\obj\Debug\Gerenciador.Dal.csprojAssemblyReference.cache
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\obj\Debug\Gerenciador.Dal.csproj.CoreCompileInputs.cache
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\obj\Debug\Gerenciador.Dal.csproj.CopyComplete
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\obj\Debug\GerenciadorDAL.dll
+E:\Projetos\Projetos\MacroLabor\API\Repositório\Gerenciador_Repositorio\ClassLibrary1\obj\Debug\GerenciadorDAL.pdb

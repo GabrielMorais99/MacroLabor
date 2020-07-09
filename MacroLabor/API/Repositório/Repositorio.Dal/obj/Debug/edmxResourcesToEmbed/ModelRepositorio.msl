@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RepositorioDalStoreContainer" CdmEntityContainer="RepositorioContexto">
+    <EntitySetMapping Name="Arquivo">
+      <EntityTypeMapping TypeName="Repositorio.Dal.Arquivo">
+        <MappingFragment StoreEntitySet="Arquivo">
+          <ScalarProperty Name="IdArquivo" ColumnName="IdArquivo" />
+          <ScalarProperty Name="IdRepositorio" ColumnName="IdRepositorio" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Metadado" ColumnName="Metadado" />
+          <ScalarProperty Name="TamanhoBytes" ColumnName="TamanhoBytes" />
+          <ScalarProperty Name="Arquivo1" ColumnName="Arquivo" />
+          <ScalarProperty Name="Registro" ColumnName="Registro" />
+          <ScalarProperty Name="Alteracao" ColumnName="Alteracao" />
+          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArquivoTemporario">
+      <EntityTypeMapping TypeName="Repositorio.Dal.ArquivoTemporario">
+        <MappingFragment StoreEntitySet="ArquivoTemporario">
+          <ScalarProperty Name="IdArquivo" ColumnName="IdArquivo" />
+          <ScalarProperty Name="DataInc" ColumnName="DataInc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Repositorio">
+      <EntityTypeMapping TypeName="Repositorio.Dal.Repositorio">
+        <MappingFragment StoreEntitySet="Repositorio">
+          <ScalarProperty Name="IdRepositorio" ColumnName="IdRepositorio" />
+          <ScalarProperty Name="IdSistema" ColumnName="IdSistema" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="ChavePrivada" ColumnName="ChavePrivada" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Registro" ColumnName="Registro" />
+          <ScalarProperty Name="Alteracao" ColumnName="Alteracao" />
+          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sistema">
+      <EntityTypeMapping TypeName="Repositorio.Dal.Sistema">
+        <MappingFragment StoreEntitySet="Sistema">
+          <ScalarProperty Name="IdSistema" ColumnName="IdSistema" />
+          <ScalarProperty Name="Nome_do_Sistema" ColumnName="Nome_do_Sistema" />
+          <ScalarProperty Name="Descricao_do_Sistema" ColumnName="Descricao_do_Sistema" />
+          <ScalarProperty Name="ChavePrivada" ColumnName="ChavePrivada" />
+          <ScalarProperty Name="Registro" ColumnName="Registro" />
+          <ScalarProperty Name="Alteracao" ColumnName="Alteracao" />
+          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

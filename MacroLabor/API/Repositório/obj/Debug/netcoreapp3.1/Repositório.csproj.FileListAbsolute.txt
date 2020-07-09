@@ -1,0 +1,4 @@
+E:\Projetos\Projetos\MacroLabor\API\Repositório\obj\Debug\netcoreapp3.1\Repositório.csprojAssemblyReference.cache
+E:\Projetos\Projetos\MacroLabor\API\Repositório\obj\Debug\netcoreapp3.1\Repositório.AssemblyInfoInputs.cache
+E:\Projetos\Projetos\MacroLabor\API\Repositório\obj\Debug\netcoreapp3.1\Repositório.AssemblyInfo.cs
+E:\Projetos\Projetos\MacroLabor\API\Repositório\obj\Debug\netcoreapp3.1\Repositório.csproj.CoreCompileInputs.cache

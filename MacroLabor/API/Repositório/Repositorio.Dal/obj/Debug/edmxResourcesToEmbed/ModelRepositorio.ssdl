@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Repositorio.Dal.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Arquivo">
+    <Key>
+      <PropertyRef Name="IdArquivo" />
+    </Key>
+    <Property Name="IdArquivo" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IdRepositorio" Type="int" Nullable="false" />
+    <Property Name="Tipo" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Metadado" Type="varchar(max)" />
+    <Property Name="TamanhoBytes" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Arquivo" Type="varbinary(max)" />
+    <Property Name="Registro" Type="datetime" Nullable="false" />
+    <Property Name="Alteracao" Type="datetime" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ArquivoTemporario">
+    <Key>
+      <PropertyRef Name="IdArquivo" />
+    </Key>
+    <Property Name="IdArquivo" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DataInc" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Repositorio">
+    <Key>
+      <PropertyRef Name="IdRepositorio" />
+    </Key>
+    <Property Name="IdRepositorio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdSistema" Type="int" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Descricao" Type="varchar" MaxLength="250" />
+    <Property Name="ChavePrivada" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Registro" Type="datetime" Nullable="false" />
+    <Property Name="Alteracao" Type="datetime" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sistema">
+    <Key>
+      <PropertyRef Name="IdSistema" />
+    </Key>
+    <Property Name="IdSistema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome_do_Sistema" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Descricao_do_Sistema" Type="varchar" MaxLength="250" />
+    <Property Name="ChavePrivada" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Registro" Type="datetime" Nullable="false" />
+    <Property Name="Alteracao" Type="datetime" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Repositorio_Tem_Arquivo">
+    <End Role="Repositorio" Type="Self.Repositorio" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Arquivo" Type="Self.Arquivo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Repositorio">
+        <PropertyRef Name="IdRepositorio" />
+      </Principal>
+      <Dependent Role="Arquivo">
+        <PropertyRef Name="IdRepositorio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Repositorios_De_Sistema">
+    <End Role="Sistema" Type="Self.Sistema" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Repositorio" Type="Self.Repositorio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sistema">
+        <PropertyRef Name="IdSistema" />
+      </Principal>
+      <Dependent Role="Repositorio">
+        <PropertyRef Name="IdSistema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RepositorioDalStoreContainer">
+    <EntitySet Name="Arquivo" EntityType="Self.Arquivo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ArquivoTemporario" EntityType="Self.ArquivoTemporario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Repositorio" EntityType="Self.Repositorio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sistema" EntityType="Self.Sistema" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Repositorio_Tem_Arquivo" Association="Self.FK_Repositorio_Tem_Arquivo">
+      <End Role="Repositorio" EntitySet="Repositorio" />
+      <End Role="Arquivo" EntitySet="Arquivo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Repositorios_De_Sistema" Association="Self.FK_Repositorios_De_Sistema">
+      <End Role="Sistema" EntitySet="Sistema" />
+      <End Role="Repositorio" EntitySet="Repositorio" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
