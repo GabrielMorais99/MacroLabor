@@ -1,0 +1,14 @@
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\bin\Debug\Repositorio.Dal.dll.config
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\bin\Debug\Repositorio.Dal.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\bin\Debug\Repositorio.Dal.pdb
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\bin\Debug\EntityFramework.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\bin\Debug\EntityFramework.SqlServer.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\bin\Debug\Gerenciador.Entidades.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\bin\Debug\Gerenciador.Entidades.pdb
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\bin\Debug\EntityFramework.xml
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\bin\Debug\EntityFramework.SqlServer.xml
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\obj\Debug\Repositorio.Dal.csprojAssemblyReference.cache
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\obj\Debug\Repositorio.Dal.csproj.CoreCompileInputs.cache
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\obj\Debug\Repositorio.Dal.csproj.CopyComplete
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\obj\Debug\Repositorio.Dal.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Repositorio.Dal\obj\Debug\Repositorio.Dal.pdb

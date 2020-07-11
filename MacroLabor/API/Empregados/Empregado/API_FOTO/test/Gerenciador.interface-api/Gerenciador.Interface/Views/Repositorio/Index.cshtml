@@ -1,0 +1,536 @@
+﻿@model  Gerenciador.Entidades.RepositorioBase
+
+<head>
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+
+    <script src="@Url.Content("~/Scripts/knockout-3.4.2.debug.js")" type="text/javascript"></script>
+
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+    <style>
+        .modal-backdrop {
+            opacity: 0.6 !important
+        }
+    </style>
+</head>
+
+<script type="text/javascript">
+
+
+  
+
+
+    function somenteNumeros(num) {
+
+        if ($(num.parentElement.parentElement).find('input:checkbox').is(':checked')) {
+
+            var er = /[^0-9.]/;
+            er.lastIndex = 0;
+            var campo = num;
+            if (er.test(campo.value)) {
+                campo.value = "";
+            }
+        } else {
+            num.value = "";
+            $.notify({ message: 'Selecione o item antes de informar o prazo de retenção!' }, { type: 'info' });
+        }
+    }
+
+    $(document).ready(function () {
+
+        function RepositorioViewModel() {
+
+
+
+            function reset() {
+
+                self.Historica_('true');
+
+                self.ApenasLeitura_('false');
+
+                self.Nome("");
+
+                self.Servidor("");
+
+                self.Usuario("");
+
+                self.Senha("");        
+
+                repositorio.SistemasClientes = [];
+            }
+
+
+            var self = this;
+
+            //Declare observable which will be bind with UI
+
+            self.IdRepositorio = ko.observable("");
+
+            self.IdSistema = ko.observable("");
+
+            self.Nome = ko.observable("");
+
+            self.Servidor = ko.observable("");
+
+            self.Usuario = ko.observable("");
+
+            self.Senha = ko.observable("");
+
+            self.ApenasLeitura_ = ko.observable("");
+
+            self.Ativo = ko.observable("");
+
+            self.Historica_ = ko.observable("");
+
+            self.Repositorio = ko.observable("");
+
+            //Ultilizado para preencher o grid principal
+            self.Repositorios = ko.observableArray();
+
+            //Contém os pares sistema / Cliente e prazo de retenção...
+            self.SistemasClientes = ko.observableArray();
+
+            //self.RepositoriosSistemaCliente = ko.observableArray();
+
+            //Ultilizado para preencher o dropdown
+            self.ddlTipoRepositorio = ko.observableArray([{ text: 'Sim', value: 'true'}, { text: 'Não', value: 'false' }]);
+
+            //Ultilizado para preencher o dropdown
+            self.ddlLeitura = ko.observableArray([{ text: 'Não', value: 'false' }, { text: 'Sim', value: 'true' }]);
+
+            //Encapsulando os campos observáveis ultilizados no CRUD.
+            var repositorio = {
+
+                IdRepositorio: self.IdRepositorio,
+
+                Nome: self.Nome,
+
+                Servidor: self.Servidor,
+
+                Usuario: self.Usuario,
+
+                Senha: self.Senha,
+
+                ApenasLeitura: self.ApenasLeitura_,
+
+                Historica: self.Historica_,
+
+                SistemasClientes: self.SistemasClientes(),
+
+                Ativo: self.Ativo
+
+            };
+
+            self.IdSistemaCliente = ko.observable("");
+
+            self.Sistema = ko.observable("");
+
+            self.Cliente = ko.observable("");
+
+            self.PrazoRetencao = ko.observable("");
+
+            self.Alias = ko.observable("");             
+
+            var SistemaCliente = {
+
+                IdSistemaCliente: self.IdSistemaCliente,
+
+                Alias: self.Alias,
+
+                Sistema: self.Sistema,
+
+                Cliente: self.Cliente,
+
+                PrazoRetencao: self.PrazoRetencao,
+
+                Ativo: self.Ativo
+
+            }; 
+
+            // Initialize the view-model
+            $.ajax({
+                url: '@Url.Action("Retornar_Repositorios", "Repositorio")',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                data: {},
+                success: function (data) {
+
+                    self.Repositorios(data);
+
+                }
+            });
+
+
+
+            self.clickSistemaCliente = function () {
+
+                if (!$(this)[0].Ativo) {
+
+                    $('input:checkbox[value="' + $(this)[0].IdSistemaCliente + '"]').parent().parent().find('input:text').val('');
+                }
+
+
+            };
+
+            self.Detail = function (Repositorio) {
+
+                $("#mainContent").html('');
+
+                //replace the get with this.href to load the edit page
+                $.get('/Repositorio/Detalhe?id=' + Repositorio.IdRepositorio, function (data) {
+
+
+
+                    $("#mainContent").html(data);
+                });
+                //show the modal
+                $('.modal-dialog').css('width', '1200px');
+
+                $('#myModal').modal({
+                    keyboard: true,
+
+                }, 'show');
+
+
+            };
+
+            self.Delete = function (Repositorio) {
+
+
+                if (confirm('Deseja realmente excluir o repositório selecionado?')) {
+
+
+                    $.get('/Repositorio/Excluir?id=' + Repositorio.IdRepositorio, function (data) {
+
+                    }).fail(function (xhr, textStatus, err) {
+
+                        $.notify({ message: err }, { type: 'danger' });
+
+                    }).done(function (data) {
+
+                        self.Repositorios.remove(Repositorio);
+
+                        $.notify({ message: 'Repositório excluído com sucesso!' }, { type: 'success' });
+                    });
+                }
+
+
+            };
+
+            self.create = function () {
+
+                $.ajax({
+
+                    data: "json",
+                    url: '/Repositorio/Retornar_Sistemas_Clientes?idRepositorioClienteSistema=null',
+                    type: 'GET',
+
+                    success: function (retorno) {
+
+                        reset();
+
+                        $.each(retorno, function (data, data) {
+
+                            repositorio.SistemasClientes.push({ IdSistemaCliente: data.IdSistemaCliente, Alias: data.Nome, Sistema: data.Sistema, Cliente: data.Cliente, Ativo: data.Ativo, PrazoRetencao: data.PrazoRetencao });
+                        })
+
+                        self.Repositorio(repositorio);
+
+                        $('#Add').dialog({ width: 1100, height: 900 });
+                    }
+
+                });
+
+            }
+      
+            self.Edit = function (entidade) {
+                 
+                reset();
+
+                self.IdRepositorio(entidade.IdRepositorio);
+
+                self.IdSistema(entidade.IdSistema);
+       
+                self.Nome(entidade.Nome);
+
+                self.Servidor(entidade.Servidor);
+
+                self.ApenasLeitura_(entidade.ApenasLeitura ? 'true' : 'false');
+
+                self.Historica_(entidade.Historica?'true':'false');
+
+                self.Usuario(entidade.Usuario);
+
+                self.Senha(entidade.Senha);
+
+                self.Ativo(entidade.Ativo);
+
+                $.each(entidade.SistemasClientes, function (data, data) {
+
+                    repositorio.SistemasClientes.push({ IdSistemaCliente: data.IdSistemaCliente, Alias: data.Nome, Sistema: data.Sistema, Cliente: data.Cliente, Ativo: data.Ativo, PrazoRetencao: data.PrazoRetencao });
+                })  
+                //Iniciando o observador Sistema com os valores já setados.
+                self.Repositorio(repositorio);
+
+                $('#Add').dialog({ width: 1100, height: 900 });
+            };
+
+            self.Transfer = function (Repositorio) {
+
+                $.get('/Repositorio/Transferir?id=' + Repositorio.IdRepositorio, function (data) {
+
+                   $('#loading').show();
+
+                    }).fail(function (xhr, textStatus, err) {
+
+                        $.notify({ message: err }, { type: 'danger' });
+
+                        $('#loading').hide();
+
+                        }).done(function (data) {
+
+                            $('#loading').hide();
+
+                            $.notify({ message: data.msg }, { type: data.success? 'success':'danger' });
+                    });
+
+            };           
+
+            self.cancel = function () {
+
+                $('#Add').dialog('close');
+            }
+
+            self.save = function () {
+
+                if (repositorio.Nome() != "" && repositorio.Servidor() != "" && repositorio.Usuario() != "" && repositorio.Senha() != "" ) {
+
+
+                        $.ajax({
+                            url: '@Url.Action("Salvar", "Repositorio")',
+
+                            cache: false,
+
+                            type: 'POST',
+
+                            contentType: 'application/json; charset=utf-8',
+
+                            data: ko.toJSON(repositorio),
+
+                            success: function (data) {
+
+                                if (data.erro) {
+
+                                    $.notify({ message: data.msg }, { type: 'danger' });
+                                }
+                                else { 
+
+                                    $('#Add').dialog('close');
+
+                                    $.notify({ message: 'Repositório salvo com sucesso!' }, { type: 'success' });
+
+                                    if (self.IdRepositorio() != '') {
+
+                                        var itemSelected = ko.utils.arrayFirst(self.Repositorios(), function (item) { return item.IdRepositorio == self.Repositorio().IdRepositorio(); });
+                                        //Removendo o elemento antigo.
+                                        self.Repositorios.remove(itemSelected);
+
+                                        //Incluindo o elemento atualizado.
+                                        self.Repositorios.push(data.Repositorio);
+                                    }
+                                    else { self.Repositorios.push(data.Repositorio);}
+
+                                  
+
+
+                                }
+                            }
+                        }).fail(function (xhr, textStatus, err) {
+                            $.notify({ message: err }, { type: 'danger' });
+                        });
+
+                    } else {
+                        $.notify({ message: 'Informe os valores corretamente!' }, { type: 'warning' });
+                    }
+
+
+            };
+
+        }
+
+        var viewModel = new RepositorioViewModel();
+
+        ko.applyBindings(viewModel);
+    });
+
+
+</script>
+
+<body>
+         
+    <h2>Repositórios</h2>
+
+    <p>
+
+        <div style="padding-left:88%">   <input type="button" value="Novo" class="button" data-bind="click: $root.create" /></div>
+
+    </p>
+
+    <table class="table" data-bind="visible: Repositorios().length > 0">
+        <thead>
+            <tr>
+
+                <th style="text-align:center">  @Html.DisplayNameFor(model => model.Nome)</th>
+
+                <th style="text-align:center">  @Html.DisplayNameFor(model => model.Servidor)</th>
+
+                <th style="text-align:center">  @Html.DisplayNameFor(model => model.Usuario)</th>
+
+                <th style="text-align:center">  @Html.DisplayNameFor(model => model.Senha)</th>
+
+                <th style="text-align:center">  @Html.DisplayNameFor(model => model.ApenasLeitura)</th>
+
+                <th style="text-align:center">  @Html.DisplayNameFor(model => model.Historica)</th>
+
+                <th style="text-align:center"> Ações</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: Repositorios">
+            <tr>
+
+                <td style="text-align:center" data-bind="text: Nome"></td>
+
+                <td style="text-align:center" data-bind="text: Servidor"></td>
+
+                <td style="text-align:center" data-bind="text: Usuario"></td>
+
+                <td style="text-align:center" data-bind="text: Senha"></td>
+
+                <td style="text-align:center" data-bind="text: ApenasLeitura_"></td>
+
+                <td style="text-align:center" data-bind="text: Historica_"></td>
+                <td>
+
+                    <a href="#" class="link" data-bind="click: $root.Detail"> Detalhes </a> |
+
+                    <a href="#" class="link" data-bind="click: $root.Edit"> Editar </a>  |
+
+                    <a href="#" class="link" data-bind="click: $root.Delete"> Excluir </a>
+
+                    <span data-bind="visible: Historica == false">|</span>
+
+                    <a href="#" class="link" data-bind="visible: Historica == false, click: $root.Transfer"> Transferir Arquivos </a>
+
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+</body> 
+
+<div id="Add" class="ui-dialog-content ui-widget-content"  style="display:none; background-color:white">
+    <div>
+        <h2>Novo</h2>
+    </div>
+
+    <div style="float:left">
+        <label for="name">Histórica</label><br />
+        <select id="ddlTipoRepositorio" data-bind="options: ddlTipoRepositorio, optionsText: 'text',optionsValue: 'value', value: $root.Historica_" style="height:40px;width:100px; color:#000000;border-color:#808080"></select>
+    </div>
+    <div style="padding-left:150px">
+        <label for="name">Apenas Leitura</label><br />
+        <select id="ddlLeitura" style="height:40px;width:100px;color:#000000;border-color:#808080" data-bind="options: ddlLeitura,optionsText: 'text',optionsValue: 'value', value: $root.ApenasLeitura_"></select>
+    </div>
+
+    <div style="float:left">
+        <label for="name">Nome</label><br />
+        <input data-bind="value: $root.Nome" type="text" style="width:250px" title="Nome" />
+    </div>
+    <div style="padding-left:280px">
+        <label for="name">Servidor</label><br />
+        <input data-bind="value: $root.Servidor" type="text" style="width:250px" title="Servidor" />
+    </div>
+
+    <div style="float:left">
+        <label for="name">Usuário</label><br />
+        <input data-bind="value: $root.Usuario" type="text" style="width:250px" title="Usuário" />
+    </div>
+    <div style="padding-left:280px">
+        <label for="name">Senha</label><br />
+        <input data-bind="value: $root.Senha" type="password" style="width:250px" title="Senha" />
+    </div>
+
+    <hr />
+
+    <table class="table" id="table_Sist_Clt">
+        <thead>
+            <tr>
+                <th style="text-align:center"></th>
+
+                <th style="text-align:center">  @Html.DisplayNameFor(model => model.RepositoriosSistemaCliente.First().Nome)</th>
+
+                <th style="text-align:center">  @Html.DisplayNameFor(model => model.RepositoriosSistemaCliente.First().Sistema)</th>
+
+                <th style="text-align:center">  @Html.DisplayNameFor(model => model.RepositoriosSistemaCliente.First().Cliente)</th>
+
+                <th style="text-align:center">  @Html.DisplayNameFor(model => model.RepositoriosSistemaCliente.First().PrazoRetencao)</th>
+
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:Repositorio().SistemasClientes">
+            <tr>
+                <td style="text-align:center">
+
+                    <input type="checkbox" class="ckbSistemaCliente"  data-bind="  event: { change: $root.clickSistemaCliente },value:IdSistemaCliente,checked:Ativo"/>
+
+                </td>
+
+                <td style="text-align:left" data-bind="text: Alias"></td>
+
+                <td style="text-align:left" data-bind="text: Sistema"></td>
+
+                <td style="text-align:left" data-bind="text: Cliente"></td>
+
+                <td style="text-align:center">
+
+                    <input type="text" data-bind="value: PrazoRetencao" style="width:90px" onkeyup="somenteNumeros(this)" maxlength="3" />
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <div style="text-align:right">
+
+        <button class="button" style="width:90px" data-bind="click: $root.save">Salvar</button>
+
+        <button class="btn btn-default" data-bind="click: $root.cancel">Cancelar</button>
+
+    </div>
+</div>
+ 
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog" style="width:700px">
+
+        <div id="mainContent" class="modal-content col-sm-12">
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

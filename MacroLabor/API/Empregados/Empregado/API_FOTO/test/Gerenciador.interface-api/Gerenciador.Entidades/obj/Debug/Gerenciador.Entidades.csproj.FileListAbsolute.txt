@@ -1,0 +1,5 @@
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Entidades\bin\Debug\Gerenciador.Entidades.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Entidades\bin\Debug\Gerenciador.Entidades.pdb
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Entidades\obj\Debug\Gerenciador.Entidades.csproj.CoreCompileInputs.cache
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Entidades\obj\Debug\Gerenciador.Entidades.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Entidades\obj\Debug\Gerenciador.Entidades.pdb

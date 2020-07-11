@@ -1,0 +1,153 @@
+﻿@model  Gerenciador.Entidades.RepositorioBase
+
+
+
+<div class="row" style="padding-top:20px">
+
+    <div class="col-lg-3" style="text-align:right">
+        <strong> @Html.DisplayNameFor(model => model.Nome):</strong>
+    </div>
+
+    <div class="col-lg-5">
+        @Html.DisplayTextFor(model => model.Nome)
+    </div>
+
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-lg-3" style="text-align:right">
+        <strong> @Html.DisplayNameFor(model => model.Servidor):</strong>
+    </div>
+
+    <div class="col-lg-5">
+        @Html.DisplayTextFor(model => model.Servidor)
+    </div>
+
+</div>
+
+
+
+
+
+<div class="row">
+
+    <div class="col-lg-3" style="text-align:right">
+        <strong> @Html.DisplayNameFor(model => model.Historica_):</strong>
+    </div>
+
+    <div class="col-lg-5">
+        @Html.DisplayTextFor(model => model.Historica_)
+    </div>
+
+</div>
+
+
+<div class="row" style="padding-bottom:10px">
+
+    <div class="col-lg-3" style="text-align:right">
+        <strong> @Html.DisplayNameFor(model => model.ApenasLeitura_):</strong>
+    </div>
+
+    <div class="col-lg-5">
+        @Html.DisplayTextFor(model => model.ApenasLeitura_)
+    </div>
+
+</div>
+
+
+
+
+
+<table class="table">
+    <tr>
+
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.RepositoriosSistemaCliente.First().Nome)
+        </th>
+
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.RepositoriosSistemaCliente.First().Sistema)
+        </th>
+
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.RepositoriosSistemaCliente.First().Cliente)
+        </th>
+
+        <th style="text-align:center">
+            Período
+        </th>
+
+        <th style="text-align:center">
+
+
+            @Html.DisplayNameFor(model => model.RepositoriosSistemaCliente.First().PrazoRetencao_)
+
+        </th>
+
+
+        <th style="text-align:center">
+
+            @Html.DisplayNameFor(model => model.RepositoriosSistemaCliente.First().Historico)
+
+        </th>
+        <th style="text-align:center">
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in Model.RepositoriosSistemaCliente)
+    {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sistema)
+
+        </td>
+
+        <td>
+
+            @Html.DisplayFor(modelItem => item.Cliente)
+
+        </td>
+
+        <td style="text-align:center">
+
+            @Html.Raw((item.LimiteMin == null) ? "N/A" : string.Format("{0} à {1}", item.LimiteMin, item.LimiteMax))
+
+        </td>
+
+        <td style="text-align:center">
+
+            @Html.Raw((item.PrazoRetencao_ == string.Empty) ? "N/A" : item.PrazoRetencao_)
+
+        </td>
+
+
+
+        <td style="text-align:center">
+
+            @Html.Raw((item.Historico == string.Empty) ? "N/A" : item.Historico)
+
+        </td>
+
+        <td style="text-align:center">
+
+            @if (!item.Historica)
+            {
+                Html.ActionLink("Transferir Arquivos", "Transferir", "Repositorio", new { id = item.IdRepositorioClienteSistema }, null);
+            }
+        </td>
+
+
+    </tr>
+    }
+
+</table>

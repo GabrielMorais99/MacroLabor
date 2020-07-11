@@ -1,0 +1,614 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Gerenciador.Dal.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TArquivoTransferencia">
+          <Key>
+            <PropertyRef Name="IdArquivoTransferencia" />
+          </Key>
+          <Property Name="IdArquivoTransferencia" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdIndice" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdBlocoTransferencia" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBlocoTransferencia">
+          <Key>
+            <PropertyRef Name="IdBlocoTranferencia" />
+          </Key>
+          <Property Name="IdBlocoTranferencia" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DataHoraInicioTransferencia" Type="datetime" Nullable="false" />
+          <Property Name="DataHoraTerminoTransferencia" Type="datetime" />
+          <Property Name="TranferenciaOK" Type="bit" Nullable="false" />
+          <Property Name="TamanhoBytes" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IdHistoricoTransferencia" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Error" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="TCliente">
+          <Key>
+            <PropertyRef Name="IDCliente" />
+          </Key>
+          <Property Name="Cliente" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="IDCliente" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="THistoricoTransferencia">
+          <Key>
+            <PropertyRef Name="IDHistoricoTransferencia" />
+          </Key>
+          <Property Name="IDHistoricoTransferencia" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IDRepositorioSistemaClienteOrigem" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IDRepositorioSistemaClienteDestino" Type="uniqueidentifier" />
+          <Property Name="DataHoraInicioTransferencia" Type="datetime" Nullable="false" />
+          <Property Name="DataHoraTerminoTransferencia" Type="datetime" />
+          <Property Name="TransferenciaOK" Type="bit" />
+          <Property Name="QtdIndices" Type="int" />
+          <Property Name="Error" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="TIndice">
+          <Key>
+            <PropertyRef Name="IDIndice" />
+          </Key>
+          <Property Name="IDIndice" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IDArquivo" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IDRepositorioSistemaCliente" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="NomeArquivo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DataUltimaAlteracao" Type="datetime" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRepositorio">
+          <Key>
+            <PropertyRef Name="IDRepositorio" />
+          </Key>
+          <Property Name="IDRepositorio" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DadosConexao" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Historica" Type="bit" Nullable="false" />
+          <Property Name="ApenasLeitura" Type="bit" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Servidor" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRepositSistemaCliente">
+          <Key>
+            <PropertyRef Name="IDRepositSistemaCliente" />
+            <PropertyRef Name="IDRepositorio" />
+            <PropertyRef Name="IDSistemaCliente" />
+          </Key>
+          <Property Name="IDRepositSistemaCliente" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IDRepositorio" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PrazoRetencaoDias" Type="int" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="IDSistemaCliente" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TSistema">
+          <Key>
+            <PropertyRef Name="IDSistema" />
+          </Key>
+          <Property Name="IDSistema" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Sistema" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TSistemaCliente">
+          <Key>
+            <PropertyRef Name="IDSistemaCliente" />
+          </Key>
+          <Property Name="IDSistemaCliente" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IDSistema" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IDCliente" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_RepositSistemaCliente_Repositorio">
+          <End Role="TRepositorio" Type="Self.TRepositorio" Multiplicity="1" />
+          <End Role="TRepositSistemaCliente" Type="Self.TRepositSistemaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRepositorio">
+              <PropertyRef Name="IDRepositorio" />
+            </Principal>
+            <Dependent Role="TRepositSistemaCliente">
+              <PropertyRef Name="IDRepositorio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TArquivoTransferencia_TBlocoTransferencia">
+          <End Role="TBlocoTransferencia" Type="Self.TBlocoTransferencia" Multiplicity="1" />
+          <End Role="TArquivoTransferencia" Type="Self.TArquivoTransferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBlocoTransferencia">
+              <PropertyRef Name="IdBlocoTranferencia" />
+            </Principal>
+            <Dependent Role="TArquivoTransferencia">
+              <PropertyRef Name="IdBlocoTransferencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TArquivoTransferencia_TIndice">
+          <End Role="TIndice" Type="Self.TIndice" Multiplicity="1" />
+          <End Role="TArquivoTransferencia" Type="Self.TArquivoTransferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIndice">
+              <PropertyRef Name="IDIndice" />
+            </Principal>
+            <Dependent Role="TArquivoTransferencia">
+              <PropertyRef Name="IdIndice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBlocoTransferencia_THistoricoTransferencia">
+          <End Role="THistoricoTransferencia" Type="Self.THistoricoTransferencia" Multiplicity="1" />
+          <End Role="TBlocoTransferencia" Type="Self.TBlocoTransferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THistoricoTransferencia">
+              <PropertyRef Name="IDHistoricoTransferencia" />
+            </Principal>
+            <Dependent Role="TBlocoTransferencia">
+              <PropertyRef Name="IdHistoricoTransferencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRepositSistemaCliente_TSistemaCliente">
+          <End Role="TSistemaCliente" Type="Self.TSistemaCliente" Multiplicity="1" />
+          <End Role="TRepositSistemaCliente" Type="Self.TRepositSistemaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TSistemaCliente">
+              <PropertyRef Name="IDSistemaCliente" />
+            </Principal>
+            <Dependent Role="TRepositSistemaCliente">
+              <PropertyRef Name="IDSistemaCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TSitemaCliente_TCliente">
+          <End Role="TCliente" Type="Self.TCliente" Multiplicity="1" />
+          <End Role="TSistemaCliente" Type="Self.TSistemaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TCliente">
+              <PropertyRef Name="IDCliente" />
+            </Principal>
+            <Dependent Role="TSistemaCliente">
+              <PropertyRef Name="IDCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TSitemaCliente_TSistema">
+          <End Role="TSistema" Type="Self.TSistema" Multiplicity="1" />
+          <End Role="TSistemaCliente" Type="Self.TSistemaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TSistema">
+              <PropertyRef Name="IDSistema" />
+            </Principal>
+            <Dependent Role="TSistemaCliente">
+              <PropertyRef Name="IDSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GerenciadorDalStoreContainer">
+          <EntitySet Name="TArquivoTransferencia" EntityType="Self.TArquivoTransferencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBlocoTransferencia" EntityType="Self.TBlocoTransferencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TCliente" EntityType="Self.TCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THistoricoTransferencia" EntityType="Self.THistoricoTransferencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIndice" EntityType="Self.TIndice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRepositorio" EntityType="Self.TRepositorio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRepositSistemaCliente" EntityType="Self.TRepositSistemaCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TSistema" EntityType="Self.TSistema" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TSistemaCliente" EntityType="Self.TSistemaCliente" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_RepositSistemaCliente_Repositorio" Association="Self.FK_RepositSistemaCliente_Repositorio">
+            <End Role="TRepositorio" EntitySet="TRepositorio" />
+            <End Role="TRepositSistemaCliente" EntitySet="TRepositSistemaCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TArquivoTransferencia_TBlocoTransferencia" Association="Self.FK_TArquivoTransferencia_TBlocoTransferencia">
+            <End Role="TBlocoTransferencia" EntitySet="TBlocoTransferencia" />
+            <End Role="TArquivoTransferencia" EntitySet="TArquivoTransferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TArquivoTransferencia_TIndice" Association="Self.FK_TArquivoTransferencia_TIndice">
+            <End Role="TIndice" EntitySet="TIndice" />
+            <End Role="TArquivoTransferencia" EntitySet="TArquivoTransferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBlocoTransferencia_THistoricoTransferencia" Association="Self.FK_TBlocoTransferencia_THistoricoTransferencia">
+            <End Role="THistoricoTransferencia" EntitySet="THistoricoTransferencia" />
+            <End Role="TBlocoTransferencia" EntitySet="TBlocoTransferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRepositSistemaCliente_TSistemaCliente" Association="Self.FK_TRepositSistemaCliente_TSistemaCliente">
+            <End Role="TSistemaCliente" EntitySet="TSistemaCliente" />
+            <End Role="TRepositSistemaCliente" EntitySet="TRepositSistemaCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TSitemaCliente_TCliente" Association="Self.FK_TSitemaCliente_TCliente">
+            <End Role="TCliente" EntitySet="TCliente" />
+            <End Role="TSistemaCliente" EntitySet="TSistemaCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TSitemaCliente_TSistema" Association="Self.FK_TSitemaCliente_TSistema">
+            <End Role="TSistema" EntitySet="TSistema" />
+            <End Role="TSistemaCliente" EntitySet="TSistemaCliente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Gerenciador.Dal" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GerenciadorContexto" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TCliente" EntityType="Gerenciador.Dal.TCliente" />
+          <EntitySet Name="TRepositorio" EntityType="Gerenciador.Dal.TRepositorio" />
+          <EntitySet Name="TRepositSistemaCliente" EntityType="Gerenciador.Dal.TRepositSistemaCliente" />
+          <EntitySet Name="TSistema" EntityType="Gerenciador.Dal.TSistema" />
+          <EntitySet Name="TSistemaCliente" EntityType="Gerenciador.Dal.TSistemaCliente" />
+          <AssociationSet Name="FK_TSitemaCliente_TCliente" Association="Gerenciador.Dal.FK_TSitemaCliente_TCliente">
+            <End Role="TCliente" EntitySet="TCliente" />
+            <End Role="TSistemaCliente" EntitySet="TSistemaCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepositSistemaCliente_Repositorio" Association="Gerenciador.Dal.FK_RepositSistemaCliente_Repositorio">
+            <End Role="TRepositorio" EntitySet="TRepositorio" />
+            <End Role="TRepositSistemaCliente" EntitySet="TRepositSistemaCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRepositSistemaCliente_TSistemaCliente" Association="Gerenciador.Dal.FK_TRepositSistemaCliente_TSistemaCliente">
+            <End Role="TSistemaCliente" EntitySet="TSistemaCliente" />
+            <End Role="TRepositSistemaCliente" EntitySet="TRepositSistemaCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TSitemaCliente_TSistema" Association="Gerenciador.Dal.FK_TSitemaCliente_TSistema">
+            <End Role="TSistema" EntitySet="TSistema" />
+            <End Role="TSistemaCliente" EntitySet="TSistemaCliente" />
+          </AssociationSet>
+          <EntitySet Name="TArquivoTransferencia" EntityType="Gerenciador.Dal.TArquivoTransferencia" />
+          <EntitySet Name="TBlocoTransferencia" EntityType="Gerenciador.Dal.TBlocoTransferencia" />
+          <EntitySet Name="THistoricoTransferencia" EntityType="Gerenciador.Dal.THistoricoTransferencia" />
+          <EntitySet Name="TIndice" EntityType="Gerenciador.Dal.TIndice" />
+          <AssociationSet Name="FK_TArquivoTransferencia_TBlocoTransferencia" Association="Gerenciador.Dal.FK_TArquivoTransferencia_TBlocoTransferencia">
+            <End Role="TBlocoTransferencia" EntitySet="TBlocoTransferencia" />
+            <End Role="TArquivoTransferencia" EntitySet="TArquivoTransferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TArquivoTransferencia_TIndice" Association="Gerenciador.Dal.FK_TArquivoTransferencia_TIndice">
+            <End Role="TIndice" EntitySet="TIndice" />
+            <End Role="TArquivoTransferencia" EntitySet="TArquivoTransferencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBlocoTransferencia_THistoricoTransferencia" Association="Gerenciador.Dal.FK_TBlocoTransferencia_THistoricoTransferencia">
+            <End Role="THistoricoTransferencia" EntitySet="THistoricoTransferencia" />
+            <End Role="TBlocoTransferencia" EntitySet="TBlocoTransferencia" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="TCliente">
+          <Key>
+            <PropertyRef Name="IDCliente" />
+          </Key>
+          <Property Name="Cliente" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="IDCliente" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="TSistemaCliente" Relationship="Gerenciador.Dal.FK_TSitemaCliente_TCliente" FromRole="TCliente" ToRole="TSistemaCliente" />
+        </EntityType>
+        <EntityType Name="TRepositorio">
+          <Key>
+            <PropertyRef Name="IDRepositorio" />
+          </Key>
+          <Property Name="IDRepositorio" Type="Guid" Nullable="false" />
+          <Property Name="DadosConexao" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Historica" Type="Boolean" Nullable="false" />
+          <Property Name="ApenasLeitura" Type="Boolean" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Servidor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TRepositSistemaCliente" Relationship="Gerenciador.Dal.FK_RepositSistemaCliente_Repositorio" FromRole="TRepositorio" ToRole="TRepositSistemaCliente" />
+        </EntityType>
+        <EntityType Name="TRepositSistemaCliente">
+          <Key>
+            <PropertyRef Name="IDRepositSistemaCliente" />
+            <PropertyRef Name="IDRepositorio" />
+            <PropertyRef Name="IDSistemaCliente" />
+          </Key>
+          <Property Name="IDRepositSistemaCliente" Type="Guid" Nullable="false" />
+          <Property Name="IDRepositorio" Type="Guid" Nullable="false" />
+          <Property Name="PrazoRetencaoDias" Type="Int32" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="IDSistemaCliente" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="TRepositorio" Relationship="Gerenciador.Dal.FK_RepositSistemaCliente_Repositorio" FromRole="TRepositSistemaCliente" ToRole="TRepositorio" />
+          <NavigationProperty Name="TSistemaCliente" Relationship="Gerenciador.Dal.FK_TRepositSistemaCliente_TSistemaCliente" FromRole="TRepositSistemaCliente" ToRole="TSistemaCliente" />
+        </EntityType>
+        <EntityType Name="TSistema">
+          <Key>
+            <PropertyRef Name="IDSistema" />
+          </Key>
+          <Property Name="IDSistema" Type="Guid" Nullable="false" />
+          <Property Name="Sistema" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TSistemaCliente" Relationship="Gerenciador.Dal.FK_TSitemaCliente_TSistema" FromRole="TSistema" ToRole="TSistemaCliente" />
+        </EntityType>
+        <EntityType Name="TSistemaCliente">
+          <Key>
+            <PropertyRef Name="IDSistemaCliente" />
+          </Key>
+          <Property Name="IDSistemaCliente" Type="Guid" Nullable="false" />
+          <Property Name="IDSistema" Type="Guid" Nullable="false" />
+          <Property Name="IDCliente" Type="Guid" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TCliente" Relationship="Gerenciador.Dal.FK_TSitemaCliente_TCliente" FromRole="TSistemaCliente" ToRole="TCliente" />
+          <NavigationProperty Name="TRepositSistemaCliente" Relationship="Gerenciador.Dal.FK_TRepositSistemaCliente_TSistemaCliente" FromRole="TSistemaCliente" ToRole="TRepositSistemaCliente" />
+          <NavigationProperty Name="TSistema" Relationship="Gerenciador.Dal.FK_TSitemaCliente_TSistema" FromRole="TSistemaCliente" ToRole="TSistema" />
+        </EntityType>
+        <Association Name="FK_TSitemaCliente_TCliente">
+          <End Type="Gerenciador.Dal.TCliente" Role="TCliente" Multiplicity="1" />
+          <End Type="Gerenciador.Dal.TSistemaCliente" Role="TSistemaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TCliente">
+              <PropertyRef Name="IDCliente" />
+            </Principal>
+            <Dependent Role="TSistemaCliente">
+              <PropertyRef Name="IDCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepositSistemaCliente_Repositorio">
+          <End Type="Gerenciador.Dal.TRepositorio" Role="TRepositorio" Multiplicity="1" />
+          <End Type="Gerenciador.Dal.TRepositSistemaCliente" Role="TRepositSistemaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRepositorio">
+              <PropertyRef Name="IDRepositorio" />
+            </Principal>
+            <Dependent Role="TRepositSistemaCliente">
+              <PropertyRef Name="IDRepositorio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRepositSistemaCliente_TSistemaCliente">
+          <End Type="Gerenciador.Dal.TSistemaCliente" Role="TSistemaCliente" Multiplicity="1" />
+          <End Type="Gerenciador.Dal.TRepositSistemaCliente" Role="TRepositSistemaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TSistemaCliente">
+              <PropertyRef Name="IDSistemaCliente" />
+            </Principal>
+            <Dependent Role="TRepositSistemaCliente">
+              <PropertyRef Name="IDSistemaCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TSitemaCliente_TSistema">
+          <End Type="Gerenciador.Dal.TSistema" Role="TSistema" Multiplicity="1" />
+          <End Type="Gerenciador.Dal.TSistemaCliente" Role="TSistemaCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TSistema">
+              <PropertyRef Name="IDSistema" />
+            </Principal>
+            <Dependent Role="TSistemaCliente">
+              <PropertyRef Name="IDSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TArquivoTransferencia">
+          <Key>
+            <PropertyRef Name="IdArquivoTransferencia" />
+          </Key>
+          <Property Name="IdArquivoTransferencia" Type="Guid" Nullable="false" />
+          <Property Name="IdIndice" Type="Guid" Nullable="false" />
+          <Property Name="IdBlocoTransferencia" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="TBlocoTransferencia" Relationship="Gerenciador.Dal.FK_TArquivoTransferencia_TBlocoTransferencia" FromRole="TArquivoTransferencia" ToRole="TBlocoTransferencia" />
+          <NavigationProperty Name="TIndice" Relationship="Gerenciador.Dal.FK_TArquivoTransferencia_TIndice" FromRole="TArquivoTransferencia" ToRole="TIndice" />
+        </EntityType>
+        <EntityType Name="TBlocoTransferencia">
+          <Key>
+            <PropertyRef Name="IdBlocoTranferencia" />
+          </Key>
+          <Property Name="IdBlocoTranferencia" Type="Guid" Nullable="false" />
+          <Property Name="DataHoraInicioTransferencia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataHoraTerminoTransferencia" Type="DateTime" Precision="3" />
+          <Property Name="TranferenciaOK" Type="Boolean" Nullable="false" />
+          <Property Name="TamanhoBytes" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="IdHistoricoTransferencia" Type="Guid" Nullable="false" />
+          <Property Name="Error" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TArquivoTransferencia" Relationship="Gerenciador.Dal.FK_TArquivoTransferencia_TBlocoTransferencia" FromRole="TBlocoTransferencia" ToRole="TArquivoTransferencia" />
+          <NavigationProperty Name="THistoricoTransferencia" Relationship="Gerenciador.Dal.FK_TBlocoTransferencia_THistoricoTransferencia" FromRole="TBlocoTransferencia" ToRole="THistoricoTransferencia" />
+        </EntityType>
+        <EntityType Name="THistoricoTransferencia">
+          <Key>
+            <PropertyRef Name="IDHistoricoTransferencia" />
+          </Key>
+          <Property Name="IDHistoricoTransferencia" Type="Guid" Nullable="false" />
+          <Property Name="IDRepositorioSistemaClienteOrigem" Type="Guid" Nullable="false" />
+          <Property Name="IDRepositorioSistemaClienteDestino" Type="Guid" />
+          <Property Name="DataHoraInicioTransferencia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataHoraTerminoTransferencia" Type="DateTime" Precision="3" />
+          <Property Name="TransferenciaOK" Type="Boolean" />
+          <Property Name="QtdIndices" Type="Int32" />
+          <Property Name="Error" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBlocoTransferencia" Relationship="Gerenciador.Dal.FK_TBlocoTransferencia_THistoricoTransferencia" FromRole="THistoricoTransferencia" ToRole="TBlocoTransferencia" />
+        </EntityType>
+        <EntityType Name="TIndice">
+          <Key>
+            <PropertyRef Name="IDIndice" />
+          </Key>
+          <Property Name="IDIndice" Type="Guid" Nullable="false" />
+          <Property Name="IDArquivo" Type="Guid" Nullable="false" />
+          <Property Name="IDRepositorioSistemaCliente" Type="Guid" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NomeArquivo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DataUltimaAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TArquivoTransferencia" Relationship="Gerenciador.Dal.FK_TArquivoTransferencia_TIndice" FromRole="TIndice" ToRole="TArquivoTransferencia" />
+        </EntityType>
+        <Association Name="FK_TArquivoTransferencia_TBlocoTransferencia">
+          <End Type="Gerenciador.Dal.TBlocoTransferencia" Role="TBlocoTransferencia" Multiplicity="1" />
+          <End Type="Gerenciador.Dal.TArquivoTransferencia" Role="TArquivoTransferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBlocoTransferencia">
+              <PropertyRef Name="IdBlocoTranferencia" />
+            </Principal>
+            <Dependent Role="TArquivoTransferencia">
+              <PropertyRef Name="IdBlocoTransferencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TArquivoTransferencia_TIndice">
+          <End Type="Gerenciador.Dal.TIndice" Role="TIndice" Multiplicity="1" />
+          <End Type="Gerenciador.Dal.TArquivoTransferencia" Role="TArquivoTransferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIndice">
+              <PropertyRef Name="IDIndice" />
+            </Principal>
+            <Dependent Role="TArquivoTransferencia">
+              <PropertyRef Name="IdIndice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBlocoTransferencia_THistoricoTransferencia">
+          <End Type="Gerenciador.Dal.THistoricoTransferencia" Role="THistoricoTransferencia" Multiplicity="1" />
+          <End Type="Gerenciador.Dal.TBlocoTransferencia" Role="TBlocoTransferencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THistoricoTransferencia">
+              <PropertyRef Name="IDHistoricoTransferencia" />
+            </Principal>
+            <Dependent Role="TBlocoTransferencia">
+              <PropertyRef Name="IdHistoricoTransferencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GerenciadorDalStoreContainer" CdmEntityContainer="GerenciadorContexto">
+          <EntitySetMapping Name="TCliente">
+            <EntityTypeMapping TypeName="Gerenciador.Dal.TCliente">
+              <MappingFragment StoreEntitySet="TCliente">
+                <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRepositorio">
+            <EntityTypeMapping TypeName="Gerenciador.Dal.TRepositorio">
+              <MappingFragment StoreEntitySet="TRepositorio">
+                <ScalarProperty Name="Servidor" ColumnName="Servidor" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="ApenasLeitura" ColumnName="ApenasLeitura" />
+                <ScalarProperty Name="Historica" ColumnName="Historica" />
+                <ScalarProperty Name="DadosConexao" ColumnName="DadosConexao" />
+                <ScalarProperty Name="IDRepositorio" ColumnName="IDRepositorio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRepositSistemaCliente">
+            <EntityTypeMapping TypeName="Gerenciador.Dal.TRepositSistemaCliente">
+              <MappingFragment StoreEntitySet="TRepositSistemaCliente">
+                <ScalarProperty Name="IDSistemaCliente" ColumnName="IDSistemaCliente" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="PrazoRetencaoDias" ColumnName="PrazoRetencaoDias" />
+                <ScalarProperty Name="IDRepositorio" ColumnName="IDRepositorio" />
+                <ScalarProperty Name="IDRepositSistemaCliente" ColumnName="IDRepositSistemaCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TSistema">
+            <EntityTypeMapping TypeName="Gerenciador.Dal.TSistema">
+              <MappingFragment StoreEntitySet="TSistema">
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="Sistema" ColumnName="Sistema" />
+                <ScalarProperty Name="IDSistema" ColumnName="IDSistema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TSistemaCliente">
+            <EntityTypeMapping TypeName="Gerenciador.Dal.TSistemaCliente">
+              <MappingFragment StoreEntitySet="TSistemaCliente">
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+                <ScalarProperty Name="IDSistema" ColumnName="IDSistema" />
+                <ScalarProperty Name="IDSistemaCliente" ColumnName="IDSistemaCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TArquivoTransferencia">
+            <EntityTypeMapping TypeName="Gerenciador.Dal.TArquivoTransferencia">
+              <MappingFragment StoreEntitySet="TArquivoTransferencia">
+                <ScalarProperty Name="IdBlocoTransferencia" ColumnName="IdBlocoTransferencia" />
+                <ScalarProperty Name="IdIndice" ColumnName="IdIndice" />
+                <ScalarProperty Name="IdArquivoTransferencia" ColumnName="IdArquivoTransferencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBlocoTransferencia">
+            <EntityTypeMapping TypeName="Gerenciador.Dal.TBlocoTransferencia">
+              <MappingFragment StoreEntitySet="TBlocoTransferencia">
+                <ScalarProperty Name="Error" ColumnName="Error" />
+                <ScalarProperty Name="IdHistoricoTransferencia" ColumnName="IdHistoricoTransferencia" />
+                <ScalarProperty Name="TamanhoBytes" ColumnName="TamanhoBytes" />
+                <ScalarProperty Name="TranferenciaOK" ColumnName="TranferenciaOK" />
+                <ScalarProperty Name="DataHoraTerminoTransferencia" ColumnName="DataHoraTerminoTransferencia" />
+                <ScalarProperty Name="DataHoraInicioTransferencia" ColumnName="DataHoraInicioTransferencia" />
+                <ScalarProperty Name="IdBlocoTranferencia" ColumnName="IdBlocoTranferencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THistoricoTransferencia">
+            <EntityTypeMapping TypeName="Gerenciador.Dal.THistoricoTransferencia">
+              <MappingFragment StoreEntitySet="THistoricoTransferencia">
+                <ScalarProperty Name="Error" ColumnName="Error" />
+                <ScalarProperty Name="QtdIndices" ColumnName="QtdIndices" />
+                <ScalarProperty Name="TransferenciaOK" ColumnName="TransferenciaOK" />
+                <ScalarProperty Name="DataHoraTerminoTransferencia" ColumnName="DataHoraTerminoTransferencia" />
+                <ScalarProperty Name="DataHoraInicioTransferencia" ColumnName="DataHoraInicioTransferencia" />
+                <ScalarProperty Name="IDRepositorioSistemaClienteDestino" ColumnName="IDRepositorioSistemaClienteDestino" />
+                <ScalarProperty Name="IDRepositorioSistemaClienteOrigem" ColumnName="IDRepositorioSistemaClienteOrigem" />
+                <ScalarProperty Name="IDHistoricoTransferencia" ColumnName="IDHistoricoTransferencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIndice">
+            <EntityTypeMapping TypeName="Gerenciador.Dal.TIndice">
+              <MappingFragment StoreEntitySet="TIndice">
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="DataUltimaAlteracao" ColumnName="DataUltimaAlteracao" />
+                <ScalarProperty Name="NomeArquivo" ColumnName="NomeArquivo" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="IDRepositorioSistemaCliente" ColumnName="IDRepositorioSistemaCliente" />
+                <ScalarProperty Name="IDArquivo" ColumnName="IDArquivo" />
+                <ScalarProperty Name="IDIndice" ColumnName="IDIndice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

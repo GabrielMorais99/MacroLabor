@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Gabriel\\Documents\\servicoImagem\\test\\test.csproj": {}
+    "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\test\\test.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Gabriel\\Documents\\servicoImagem\\test\\test.csproj": {
+    "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\test\\test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Gabriel\\Documents\\servicoImagem\\test\\test.csproj",
+        "projectUniqueName": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\test\\test.csproj",
         "projectName": "test",
-        "projectPath": "c:\\Users\\Gabriel\\Documents\\servicoImagem\\test\\test.csproj",
+        "projectPath": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\test\\test.csproj",
         "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Gabriel\\Documents\\servicoImagem\\test\\obj\\",
+        "outputPath": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",

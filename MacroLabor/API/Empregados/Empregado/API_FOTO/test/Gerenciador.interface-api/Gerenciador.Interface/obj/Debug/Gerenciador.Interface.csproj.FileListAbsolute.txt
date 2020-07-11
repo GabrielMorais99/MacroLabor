@@ -1,0 +1,2 @@
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Interface\obj\Debug\Gerenciador.Interface.csprojAssemblyReference.cache
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Interface\obj\Debug\Gerenciador.Interface.csproj.CoreCompileInputs.cache

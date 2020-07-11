@@ -1,0 +1,17 @@
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\Gerenciador.Negocio.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\Gerenciador.Negocio.pdb
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\Gerenciador.Dal.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\Gerenciador.Entidades.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\Repositorio.Dal.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\EntityFramework.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\Gerenciador.Dal.pdb
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\Gerenciador.Dal.dll.config
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\Gerenciador.Entidades.pdb
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\Repositorio.Dal.pdb
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\Repositorio.Dal.dll.config
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\bin\Debug\EntityFramework.xml
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\obj\Debug\Gerenciador.Negocio.csprojAssemblyReference.cache
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\obj\Debug\Gerenciador.Negocio.csproj.CoreCompileInputs.cache
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\obj\Debug\Gerenciador.Negocio.csproj.CopyComplete
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\obj\Debug\Gerenciador.Negocio.dll
+E:\GerenciadorRepositorio-master\Gerenciador.Interface\Gerenciador.Negocio\obj\Debug\Gerenciador.Negocio.pdb

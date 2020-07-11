@@ -1,0 +1,325 @@
+﻿@model IEnumerable<Gerenciador.Entidades.Cliente>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+
+<head>
+
+    <script src="~/Scripts/knockout-3.4.2.js"></script> 
+
+    <script src="@Url.Content("~/Scripts/knockout-3.4.2.debug.js")" type="text/javascript"></script>
+
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+
+</head>
+
+
+
+
+<h2>Clientes</h2>
+
+
+<p>
+    <div style="padding-left:88%">   <input type="button" value="Novo" class="button" data-bind="click: $root.create" /></div>
+ 
+
+</p>
+
+<table class="table">
+
+    <thead>
+        <tr>
+
+            <th style="text-align:center;width:90%">
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+
+            <th style="text-align:center">Ações</th>
+        </tr>
+
+    </thead>
+    <tbody data-bind="foreach: Clientes">
+        <tr>
+            <td style="text-align:center" data-bind="text: Nome"></td>
+
+
+            <td style="text-align:center">
+                <a href="#" class="link" data-bind="click: $root.Edit"> Editar </a> |
+
+                <a href="#" class="link" data-bind="click: $root.Delete"> Excluir </a>
+
+            </td>
+
+        </tr>
+    </tbody>
+
+</table>
+ 
+
+<div id="Add" class="ui-dialog-content ui-widget-content"  style="display:none; background-color:white">
+    <div>
+        <h2>Novo</h2>
+    </div> 
+    <div style="float:left">
+        <label for="name">Nome</label><br />
+        <input data-bind="value: $root.Nome" type="text" style="width:250px" title="Nome" />
+    </div> 
+
+    <br />
+    <div style="text-align:right">
+
+        <button class="button" style="width:90px" data-bind="click: $root.save">Salvar</button>
+
+        <button class="btn btn-default" data-bind="click: $root.cancel">Cancelar</button>
+
+    </div>
+</div>
+
+
+<div id="Update" class="ui-dialog-content ui-widget-content" data-bind="if: Cliente" style="display:none; background-color:white">
+    <div>
+        <h2>Alterar</h2>
+    </div>
+    <div style="float:left">
+        <label for="name">Nome</label><br />
+        <input data-bind="value: Cliente().Nome" type="text" style="width:250px" title="Nome" />
+    </div>
+
+    <br />
+    <div style="text-align:right">
+
+        <button class="button" style="width:90px" data-bind="click: $root.update">Salvar</button>
+
+        <button class="btn btn-default" data-bind="click: $root.cancel">Cancelar</button>
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+ 
+    $(document).ready(function () {
+
+        function ClienteViewModel() {
+             
+            var self = this;
+
+            //Declare observable which will be bind with UI
+            self.Nome = ko.observable(""); 
+
+            self.Cliente = ko.observable(""); 
+
+            //Ultilizado para preencher o grid principal
+            self.Clientes = ko.observableArray();
+
+           
+
+            //Encapsulando os campos observáveis ultilizados no CRUD.
+            var cliente = {
+
+                Nome: self.Nome
+            };
+
+
+
+            // Initialize the view-model
+            $.ajax({
+                url: '@Url.Action("Retornar_Clientes", "Cliente")',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                data: {},
+                success: function (data) {
+
+                    self.Clientes(data);
+
+                }
+            });
+
+
+
+
+            self.Edit = function (Cliente) {
+
+
+                $('#Update').dialog({ width: 500, height: 250 });
+
+                self.Cliente(Cliente);
+
+
+            }; 
+
+            self.Delete = function (Cliente) {
+
+                if (confirm('Deseja realmente excluir o cliente selecionado?')) {
+
+                    $.get('/Cliente/Excluir?id=' + Cliente.IdCliente, function (data) {
+
+                    }).fail(function (xhr, textStatus, err) {
+
+                        $.notify({ message: err }, { type: 'danger' });
+
+                    }).done(function (data) {
+
+
+                        if (data.erro) {
+                            $.notify({ message: data.msg }, { type: 'danger' });
+                        }
+                        else {
+
+
+                            self.Clientes.remove(Cliente);
+
+                            $.notify({ message: 'Cliente excluído com sucesso!' }, { type: 'success' });
+
+                        }
+                    });
+                }
+
+
+            }; 
+
+            self.create = function () {
+
+                $('#Add').dialog({ width: 500, height: 250 });
+
+            }
+
+            self.cancel = function () {
+
+                $('#Add').dialog('close');
+            }
+
+            self.save = function () {
+ 
+
+                if (cliente.Nome() != "") {
+
+
+                        $.ajax({
+                            url: '@Url.Action("Salvar", "Cliente")',
+
+                            cache: false,
+
+                            type: 'POST',
+
+                            contentType: 'application/json; charset=utf-8',
+
+                            data: ko.toJSON(cliente),
+
+                            success: function (data) {
+
+                                if (data.erro) {
+
+                                    $.notify({ message: data.msg }, { type: 'danger' });
+                                }
+                                else {
+
+                                    self.Clientes.push(data.Cliente);
+
+                                    self.Nome("");
+
+                                    $('#Add').dialog('close');
+
+                                    $.notify({ message: 'Cliente criado com sucesso!' }, { type: 'success' });
+
+
+                                }
+
+
+
+
+                            }
+                        }).fail(function (xhr, textStatus, err) {
+                            $.notify({ message: err }, { type: 'danger' });
+                        });
+
+                    } else {
+                        $.notify({ message: 'Informe os valores corretamente!' }, { type: 'warning' });
+                    }
+
+
+            };
+
+
+
+              self.update = function () {
+ 
+
+                  var cliente = self.Cliente();
+
+                if (cliente.Nome != "") {
+
+
+                        $.ajax({
+                            url: '@Url.Action("Salvar", "Cliente")',
+
+                            cache: false,
+
+                            type: 'POST',
+
+                            contentType: 'application/json; charset=utf-8',
+
+                            data: ko.toJSON(cliente),
+
+                            success: function (data) {
+
+                                if (data.erro) {
+
+                                    $.notify({ message: data.msg }, { type: 'danger' });
+                                }
+                                else {
+
+
+                                
+                                    
+                                    var index = self.Clientes.indexOf(cliente);
+
+                                    if (index > -1)  
+                                        self.Clientes.splice(index, 1);
+
+
+                                    self.Clientes.splice(index, 0, data.Cliente);
+
+                                    
+                            
+
+                                    $('#Update').dialog('close');
+
+                                    $.notify({ message: 'Cliente salvo com sucesso!' }, { type: 'success' });
+
+
+                                }
+
+
+
+
+                            }
+                        }).fail(function (xhr, textStatus, err) {
+                            $.notify({ message: err }, { type: 'danger' });
+                        });
+
+                    } else {
+                        $.notify({ message: 'Informe os valores corretamente!' }, { type: 'warning' });
+                    }
+
+
+            };
+
+
+
+        } 
+
+        var viewModel = new ClienteViewModel();
+
+        ko.applyBindings(viewModel);
+    });
+
+
+</script>
