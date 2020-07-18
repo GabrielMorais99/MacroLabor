@@ -1,0 +1,128 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\Gerenciador.Dal.csproj": {}
+  },
+  "projects": {
+    "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\Gerenciador.Dal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\Gerenciador.Dal.csproj",
+        "projectName": "Gerenciador.Dal",
+        "projectPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\Gerenciador.Dal.csproj",
+        "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
+        "outputPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj": {
+                "projectPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj",
+        "projectName": "Repositorio.Dal",
+        "projectPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj",
+        "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
+        "outputPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
