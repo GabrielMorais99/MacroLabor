@@ -4,3 +4,6 @@ E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\Repositorio.Da
 E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\Repositorio.Dal\obj\Debug\netcoreapp3.1\Repositorio.Dal.csproj.CoreCompileInputs.cache
 E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\Repositorio.Dal\bin\Debug\netcoreapp3.1\Repositorio.Dal.deps.json
 E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\Repositorio.Dal\bin\Debug\netcoreapp3.1\Repositorio.Dal.dll
+E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\Repositorio.Dal\bin\Debug\netcoreapp3.1\Repositorio.Dal.pdb
+E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\Repositorio.Dal\obj\Debug\netcoreapp3.1\Repositorio.Dal.dll
+E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\Repositorio.Dal\obj\Debug\netcoreapp3.1\Repositorio.Dal.pdb

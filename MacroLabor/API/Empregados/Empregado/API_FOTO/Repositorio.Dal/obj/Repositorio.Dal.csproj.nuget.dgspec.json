@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj": {}
+    "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj": {}
   },
   "projects": {
-    "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj": {
+    "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj",
+        "projectUniqueName": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj",
         "projectName": "Repositorio.Dal",
-        "projectPath": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj",
+        "projectPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj",
         "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-        "outputPath": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\obj\\",
+        "outputPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",

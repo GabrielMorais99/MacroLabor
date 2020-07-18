@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\API_FOTO_vs\\API_FOTO_vs.csproj": {}
+    "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\API_FOTO_vs\\API_FOTO_vs.csproj": {}
   },
   "projects": {
-    "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\API_FOTO_vs\\API_FOTO_vs.csproj": {
+    "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\API_FOTO_vs\\API_FOTO_vs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\API_FOTO_vs\\API_FOTO_vs.csproj",
+        "projectUniqueName": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\API_FOTO_vs\\API_FOTO_vs.csproj",
         "projectName": "API_FOTO_vs",
-        "projectPath": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\API_FOTO_vs\\API_FOTO_vs.csproj",
+        "projectPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\API_FOTO_vs\\API_FOTO_vs.csproj",
         "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-        "outputPath": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\API_FOTO_vs\\obj\\",
+        "outputPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\API_FOTO_vs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",

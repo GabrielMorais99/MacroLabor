@@ -4954,11 +4954,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\Gerenciador.Dal.csproj",
+      "projectUniqueName": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\Gerenciador.Dal.csproj",
       "projectName": "Gerenciador.Dal",
-      "projectPath": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\Gerenciador.Dal.csproj",
+      "projectPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\Gerenciador.Dal.csproj",
       "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
-      "outputPath": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\obj\\",
+      "outputPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4974,8 +4974,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj": {
-              "projectPath": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj"
+            "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj": {
+              "projectPath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Repositorio.Dal\\Repositorio.Dal.csproj"
             }
           }
         }
