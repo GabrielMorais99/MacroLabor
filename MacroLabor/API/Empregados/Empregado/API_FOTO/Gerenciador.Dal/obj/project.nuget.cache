@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OBcMZ5K7AISb8aKf0jfrE6TQUiRdBgZceWxqwPja8xwEX7meWK5wg9hdlxugyqgK+bM7p87PAiLeN95w7OycxA==",
+  "dgSpecHash": "nO8oKbxzTYioP/Xbe5eyC/yyeyEIT3fR+us2qiyvovqDaWE5LW6PefssxQxAlOBFILlKfw1sy7tSa8aVc67KOw==",
   "success": true,
-  "projectFilePath": "E:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\Gerenciador.Dal.csproj",
+  "projectFilePath": "e:\\Projetos\\Projetos\\MacroLabor\\API\\Empregados\\Empregado\\API_FOTO\\Gerenciador.Dal\\Gerenciador.Dal.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gabriel\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Gabriel\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
