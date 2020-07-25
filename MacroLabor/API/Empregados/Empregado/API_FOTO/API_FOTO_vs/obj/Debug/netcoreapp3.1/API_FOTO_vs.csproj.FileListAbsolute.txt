@@ -16,5 +16,10 @@ E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\bi
 E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\obj\Debug\netcoreapp3.1\API_FOTO_vs.dll
 E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\obj\Debug\netcoreapp3.1\API_FOTO_vs.pdb
 E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\obj\Debug\netcoreapp3.1\API_FOTO_vs.genruntimeconfig.cache
-E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\obj\Debug\netcoreapp3.1\API_FOTO_vs.csproj.CoreCompileInputs.cache
-E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\obj\Debug\netcoreapp3.1\API_FOTO_vs.MvcApplicationPartsAssemblyInfo.cache
+E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\obj\Debug\netcoreapp3.1\API_FOTO_vs.csproj.CopyComplete
+E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Projetos\Projetos\MacroLabor\API\Empregados\Empregado\API_FOTO\API_FOTO_vs\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
